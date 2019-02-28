@@ -1,0 +1,120 @@
+@font-face {
+    font-family: "PressStart2P";
+    src: url("../fonts/PressStart2P.ttf");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "PressStart2P";
+}
+
+body {
+    background: #222222;
+}
+
+#root {
+    width: 600px;
+    margin: 10px auto;
+    background: black;
+    color: grey;
+    padding: 10px;
+    position: relative;
+}
+
+#image {
+    /* width: 128px;
+    height: 80px; */
+    width: 200px;
+    height: 125px;
+    margin-top: 10px;
+    border: 2px solid white;
+}
+
+#display {
+    margin-top: 5px;
+    line-height: 20px;
+}
+
+#gameConsole {
+    margin-top: 15px;
+}
+
+#consoleIn {
+    display: inline-block;
+    margin-left: 10px;
+    background: black;
+    width: auto;
+    /* color: grey; */
+    border: 0px;
+    text-transform: uppercase;
+    color: transparent;
+    text-shadow: 0 0 0 grey;
+    font-size: 14px;
+}
+
+#consoleIn:focus {
+    outline: 0;
+}
+
+#consoleOut {
+    display: inline-block;
+}
+
+#compass {
+    position: absolute;
+    top: 60px;
+    left: 300px;
+    transform: scale(1.7)
+}
+
+.compassCover {
+    width: 20px;
+    height: 20px;
+    background: black;
+    z-index: 5;
+    position: absolute;
+}
+
+#coverN {
+    top: 29px;
+    left: 348px;
+}
+
+#coverS {
+    top: 128px;
+    left: 354px;
+}
+
+#coverW {
+    top: 59px;
+    left: 260px;
+}
+
+#coverE {
+    top: 59px;
+    left: 450px;
+}
+
+#overlay {
+    z-index: 100;
+    position: absolute;
+    margin: auto;
+    left: 0; 
+    right: 0;
+    top: 0;
+}
+
+#audioDIV{
+    display: none;
+}
+
+.center {
+    z-index: 100;
+    position: absolute;
+    margin: auto;
+    left: 0; 
+    right: 0;
+    top: 0;
+}

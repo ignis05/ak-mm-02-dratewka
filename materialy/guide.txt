@@ -1,0 +1,33 @@
+take key from 23
+use key on 56 (axe)
+use axe on 67 (sticks)
+use sticks[12] on 43 (progress ++)
+
+take mushrooms from 17
+use mushrooms on 34 (money)
+use money on 37 (barrel)
+use barrel[16] on 43 (progress ++)
+
+take berries from 27
+use berries on 36 (wool)
+use wool[19] on 43 (progress ++)
+
+take bag from 44
+use bag on 57 (rag)
+use rag[22] on 43 (progress ++)
+
+take spade from 64
+use spade on 11 (sulphur)
+use sulphur[25] on 43 (progress ++)
+
+take bucket from 15
+use bucket on 21 (tar)
+use tar[28] on 43 (progress ++)
+
+----------------------------
+use sheep on 43 (dragon dead)
+take knife from 55
+use knife on 43 (dragonskin)
+use dragonskin on 57 (dragonskin shoes)
+use dragonskin shoes on 41 (prize)
+use prize  (victory royale)

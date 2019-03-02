@@ -30,4 +30,4 @@ take knife from 55
 use knife on 43 (dragonskin)
 use dragonskin on 57 (dragonskin shoes)
 use dragonskin shoes on 41 (prize)
-use prize  (victory royale)
+use prize (victory royale)

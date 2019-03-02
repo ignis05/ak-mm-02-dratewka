@@ -2,7 +2,7 @@ var gameConsole = {
     caps: true,
     cheats: false,
     inputInterpreter: function () {
-        this.input = document.getElementById("consoleIn").value.toUpperCase() //read
+        this.input = document.getElementById("consoleIn").value //read
         document.getElementById("consoleIn").value = "" //clear
         console.log("Input: ", this.input);
         if (this.cheats && this.input.split(" ")[0] == "GET") { //get command
@@ -693,6 +693,31 @@ var map = {
     }
 }
 
+function initInputCaseSwitching() {
+    document.addEventListener("keydown", e => {
+        if (e.which == 16) {
+            gameConsole.caps = !gameConsole.caps
+        }
+        if (e.which == 20) {
+            gameConsole.caps = !gameConsole.caps
+        }
+    })
+    document.addEventListener("keyup", e => {
+        if (e.which == 16) {
+            gameConsole.caps = !gameConsole.caps
+        }
+    })
+    document.getElementById("consoleIn").addEventListener("input", function () {
+        if (this.value.length > 0) {
+            let string = this.value
+            let array = string.split("")
+            array[array.length - 1] = (gameConsole.caps ? (array[array.length - 1]).toUpperCase() : (array[array.length - 1]).toLowerCase())
+            string = array.join("")
+            this.value = string
+        }
+    })
+}
+
 function start() {
     document.body.innerHTML = ""
     var overlay = new Image()
@@ -818,8 +843,7 @@ function loadPage() {
 
     //display first location
     gameConsole.display()
+
+    initInputCaseSwitching()
 }
 document.addEventListener("DOMContentLoaded", start)
-
-
-//e.getModifierState("Capslock")

@@ -3,7 +3,7 @@ Fiszka do projektu "Dratewka".
 Imię:		Grzegorz
 Nazwisko:	Mikołajczyk
 Klasa:		3IB
-Termin (np. 50%): 100%
+Termin: 	100%
 
 poniżej zaznacz jednoznacznie co zrobiłeś/aś w 100%. Plik umieść w folderze z grą.
 -------------
@@ -12,7 +12,7 @@ poniżej zaznacz jednoznacznie co zrobiłeś/aś w 100%. Plik umieść w folderz
 	- komunikaty wpisywane z klawiatury (zatwierdzanie Enterem) [TAK]
 	- rozpoznanie co najmniej trzech komunikatów (co najmniej informacja w konsoli) [TAK]
 	- wyglad prompta, jego zachwanie (brak możliwości "wyjścia") [TAK]
-	- po wejściu do gry domyślnie wpisuje duże znaki (caps/shift - zmiana)
+	- po wejściu do gry domyślnie wpisuje duże znaki (caps/shift - zmiana) [TAK]
 
 2. mapa, ruch (1p)	
 	- możliwość przechodzenia po dostępnych lokalizacjach (E/W/N/S), pokazywanie odpowiedniej grafiki i nazw lokalizacji [TAK]
@@ -36,4 +36,4 @@ poniżej zaznacz jednoznacznie co zrobiłeś/aś w 100%. Plik umieść w folderz
 	- polecenia V(VOCABULARY), G(GOSSIPS) [TAK]
 	
 
-SUMA PUNKTÓW: 
+SUMA PUNKTÓW: 7p

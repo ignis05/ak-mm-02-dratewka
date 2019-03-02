@@ -24,8 +24,6 @@ body {
 }
 
 #image {
-    /* width: 128px;
-    height: 80px; */
     width: 200px;
     height: 125px;
     margin-top: 10px;
@@ -46,9 +44,7 @@ body {
     margin-left: 10px;
     background: black;
     width: auto;
-    /* color: grey; */
     border: 0px;
-    text-transform: uppercase;
     color: transparent;
     text-shadow: 0 0 0 grey;
     font-size: 14px;

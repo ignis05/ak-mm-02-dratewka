@@ -76,23 +76,23 @@ var gameConsole = {
         console.log("moving: " + direction);
         if (map.currentLocation().id == "42" && direction == "W" & !map.dragonDead) { //trying to go to 41 with dragon alive
             console.log("cant - special trigger");
-            document.getElementById("consoleIn").disabled = true
-            document.getElementById("consoleIn").style.display = "none"
+            document.removeEventListener("keyup", consoleKeyUp)
+            document.removeEventListener("keydown", consoleKeyDown)
             document.getElementById("consoleOut").innerText = "You can't go that way..."
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "The dragon sleeps in a cave!"
                 setTimeout(() => {
                     document.getElementById("consoleOut").innerText = "What now?"
-                    document.getElementById("consoleIn").disabled = false
-                    document.getElementById("consoleIn").style.display = "inline-block"
+                    document.addEventListener("keyup", consoleKeyUp)
+                    document.addEventListener("keydown", consoleKeyDown)
                 }, 2000)
             }, 2000)
             return
         }
         if (map.currentLocation().wayTarget(direction)) {
             map.position = map.currentLocation().wayTarget(direction)
-            document.getElementById("consoleIn").disabled = true
-            document.getElementById("consoleIn").style.display = "none"
+            document.removeEventListener("keyup", consoleKeyUp)
+            document.removeEventListener("keydown", consoleKeyDown)
             var fulldirection;
             switch (direction) {
                 case "W":
@@ -111,8 +111,8 @@ var gameConsole = {
             document.getElementById("consoleOut").innerText = `You are going ${fulldirection}`
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "What now?"
-                document.getElementById("consoleIn").disabled = false
-                document.getElementById("consoleIn").style.display = "inline-block"
+                document.addEventListener("keyup", consoleKeyUp)
+                document.addEventListener("keydown", consoleKeyDown)
                 this.display()
             }, 300)
         }
@@ -251,13 +251,13 @@ var gameConsole = {
 
     },
     setTempMsg: msg => {
-        document.getElementById("consoleIn").disabled = true
-        document.getElementById("consoleIn").style.display = "none"
+        document.removeEventListener("keyup", consoleKeyUp)
+        document.removeEventListener("keydown", consoleKeyDown)
         document.getElementById("consoleOut").innerText = msg
         setTimeout(() => {
             document.getElementById("consoleOut").innerText = "What now?"
-            document.getElementById("consoleIn").disabled = false
-            document.getElementById("consoleIn").style.display = "inline-block"
+            document.addEventListener("keyup", consoleKeyUp)
+            document.addEventListener("keydown", consoleKeyDown)
         }, 2000)
     },
     vocabulary: function () {
@@ -270,7 +270,8 @@ var gameConsole = {
         display.innerText += "GOSSIPS or G, VOCABULARY or V \n"
 
         var consoleIn = document.getElementById("consoleIn")
-        consoleIn.disabled = true
+        document.removeEventListener("keyup", consoleKeyUp)
+        document.removeEventListener("keydown", consoleKeyDown)
         consoleIn.style.display = "none"
         document.getElementById("consoleOut").innerText = "Press any key"
 
@@ -280,7 +281,9 @@ var gameConsole = {
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
-                consoleIn.disabled = false
+                
+                document.addEventListener("keyup", consoleKeyUp)
+                document.addEventListener("keydown", consoleKeyDown)
             }, 100)
         })
     },
@@ -294,7 +297,9 @@ var gameConsole = {
         display.innerText += " pickers... Making a rag from a bag..."
 
         var consoleIn = document.getElementById("consoleIn")
-        consoleIn.disabled = true
+        
+        document.removeEventListener("keyup", consoleKeyUp)
+        document.removeEventListener("keydown", consoleKeyDown)
         consoleIn.style.display = "none"
         document.getElementById("consoleOut").innerText = "Press any key"
 
@@ -304,7 +309,9 @@ var gameConsole = {
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
-                consoleIn.disabled = false
+                
+                document.addEventListener("keyup", consoleKeyUp)
+                document.addEventListener("keydown", consoleKeyDown)
             }, 100)
         })
     },
@@ -579,8 +586,8 @@ var map = {
         },
         "24": () => {
             console.log("You are digging...");
-            document.getElementById("consoleIn").disabled = true
-            document.getElementById("consoleIn").style.display = "none"
+            document.removeEventListener("keyup", consoleKeyUp)
+            document.removeEventListener("keydown", consoleKeyDown)
             document.getElementById("consoleOut").innerText = "You are digging..."
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "and digging..."
@@ -588,8 +595,8 @@ var map = {
                     document.getElementById("consoleOut").innerText = "That's enough sulphur for you"
                     setTimeout(() => {
                         document.getElementById("consoleOut").innerText = "What now?"
-                        document.getElementById("consoleIn").disabled = false
-                        document.getElementById("consoleIn").style.display = "inline-block"
+                        document.addEventListener("keyup", consoleKeyUp)
+                        document.addEventListener("keydown", consoleKeyDown)
                         map.carry = "25"
                         gameConsole.display()
                     }, 2000)
@@ -621,8 +628,8 @@ var map = {
         "37": () => { //dragone xDD
             console.log("used sheep");
             gameConsole.display()
-            document.getElementById("consoleIn").disabled = true
-            document.getElementById("consoleIn").style.display = "none"
+            document.removeEventListener("keyup", consoleKeyUp)
+            document.removeEventListener("keydown", consoleKeyDown)
             document.getElementById("consoleOut").innerText = "The dragon noticed your gift..."
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "The dragon ate your sheep and died!"
@@ -633,8 +640,8 @@ var map = {
                 gameConsole.display()
                 setTimeout(() => {
                     document.getElementById("consoleOut").innerText = "What now?"
-                    document.getElementById("consoleIn").disabled = false
-                    document.getElementById("consoleIn").style.display = "inline-block"
+                    document.addEventListener("keyup", consoleKeyUp)
+                    document.addEventListener("keydown", consoleKeyDown)
                 }, 2000)
             }, 2000)
         },
@@ -686,41 +693,49 @@ var map = {
     }
 }
 
-function initInputCaseSwitching() {
 
-    document.addEventListener("keyup", e => { //enter, release shift
-        if (e.code === "Enter") {
-            gameConsole.inputInterpreter()
-        }
-        if (e.code == "ShiftLeft") {
-            gameConsole.caps = !gameConsole.caps
-        }
-    })
 
-    document.addEventListener("keydown", e => { // typing, space, shift, capslock
-        var consoleIn = document.getElementById("consoleIn")
-        console.log(e.code);
-        var key = e.code.slice(-1)
-        const chars = "QWERTYUIOPASDFGHJKLZXCVBNM"
-        if (chars.includes(key)) {
-            document.getElementById("consoleIn").value += (gameConsole.caps ? key.toUpperCase() : key.toLowerCase())
-        }
-        if (e.code == "Space") {
-            document.getElementById("consoleIn").value += " "
-        }
-        if (e.code == "Backspace") {
-            if (consoleIn.value.length > 0) {
-                consoleIn.value = consoleIn.value.substring(0, consoleIn.value.length - 1)
-            }
-        }
-        if (e.code == "ShiftLeft") {
-            gameConsole.caps = !gameConsole.caps
-        }
-        if (e.code == "CapsLock") {
-            gameConsole.caps = !gameConsole.caps
-        }
-    })
+function consoleKeyUp() {
+    if (event.code === "Enter") {
+        gameConsole.inputInterpreter()
+    }
+    if (event.code == "ShiftLeft") {
+        gameConsole.caps = !gameConsole.caps
+    }
 }
+
+function consoleKeyDown() {
+    var consoleIn = document.getElementById("consoleIn")
+    console.log(event.code);
+    var key = event.code.slice(-1)
+    const chars = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
+    if (chars.includes(key)) {
+        document.getElementById("consoleIn").value += (gameConsole.caps ? key.toUpperCase() : key.toLowerCase())
+    }
+    if (event.code == "Space") {
+        document.getElementById("consoleIn").value += " "
+    }
+    if (event.code == "Backspace") {
+        if (consoleIn.value.length > 0) {
+            consoleIn.value = consoleIn.value.substring(0, consoleIn.value.length - 1)
+        }
+    }
+    if (event.code == "ShiftLeft") {
+        gameConsole.caps = !gameConsole.caps
+    }
+    if (event.code == "CapsLock") {
+        gameConsole.caps = !gameConsole.caps
+    }
+}
+
+function initInputCaseSwitching() {
+    //enter, shift
+    document.addEventListener("keyup", consoleKeyUp)
+
+    // typing, space, shift, capslock
+    document.addEventListener("keydown", consoleKeyDown)
+}
+
 
 function start() {
     document.body.innerHTML = ""

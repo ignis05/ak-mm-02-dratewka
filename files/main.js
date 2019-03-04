@@ -281,7 +281,7 @@ var gameConsole = {
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
-                
+
                 document.addEventListener("keyup", consoleKeyUp)
                 document.addEventListener("keydown", consoleKeyDown)
             }, 100)
@@ -297,7 +297,7 @@ var gameConsole = {
         display.innerText += " pickers... Making a rag from a bag..."
 
         var consoleIn = document.getElementById("consoleIn")
-        
+
         document.removeEventListener("keyup", consoleKeyUp)
         document.removeEventListener("keydown", consoleKeyDown)
         consoleIn.style.display = "none"
@@ -309,7 +309,7 @@ var gameConsole = {
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
-                
+
                 document.addEventListener("keyup", consoleKeyUp)
                 document.addEventListener("keydown", consoleKeyDown)
             }, 100)
@@ -463,7 +463,7 @@ var map = {
 
         //WIERSZ 4
         41: new Location(`41`, `You are in the Wawel Castle`, `41.gif`, `rgb(255,176,141)`, ["E"]),
-        42: new Location(`42`, `You are inside a dragon's cave`, `42.gif`, `rgb(198,205,193)`, ["E"]),
+        42: new Location(`42`, `You are inside a dragon's cave`, `42.gif`, `rgb(198,205,193)`, ["W", "E"]),
         43: new Location(`43`, `A perfect place to set a trap`, `43.gif`, `rgb(255,176,141)`, ["N", "W"]),
         44: new Location(`44`, `You are by the water mill`, `44.gif`, `rgb(255,190,99)`, ["E"], [`21`]),
         45: new Location(`45`, `You are at a main crossroad`, `45.gif`, `rgb(255,190,99)`, ["N", "S", "W", "E"]),
@@ -635,7 +635,6 @@ var map = {
                 document.getElementById("consoleOut").innerText = "The dragon ate your sheep and died!"
                 map.dragonDead = true;
                 map.currentLocation().img = "DS68.bmp"
-                map.locations["42"].ways.push("W")
                 map.currentLocation().items.push(30)
                 gameConsole.display()
                 setTimeout(() => {

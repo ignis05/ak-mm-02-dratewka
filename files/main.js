@@ -85,7 +85,6 @@ var gameConsole = {
                     document.getElementById("consoleOut").innerText = "What now?"
                     document.getElementById("consoleIn").disabled = false
                     document.getElementById("consoleIn").style.display = "inline-block"
-                    document.getElementById("consoleIn").focus()
                 }, 2000)
             }, 2000)
             return
@@ -114,7 +113,6 @@ var gameConsole = {
                 document.getElementById("consoleOut").innerText = "What now?"
                 document.getElementById("consoleIn").disabled = false
                 document.getElementById("consoleIn").style.display = "inline-block"
-                document.getElementById("consoleIn").focus()
                 this.display()
             }, 300)
         }
@@ -260,7 +258,6 @@ var gameConsole = {
             document.getElementById("consoleOut").innerText = "What now?"
             document.getElementById("consoleIn").disabled = false
             document.getElementById("consoleIn").style.display = "inline-block"
-            document.getElementById("consoleIn").focus()
         }, 2000)
     },
     vocabulary: function () {
@@ -280,7 +277,6 @@ var gameConsole = {
         var listener = document.addEventListener("keypress", e => {
             document.getElementById("consoleOut").innerText = "What now?"
             consoleIn.style.display = "inline-block"
-            consoleIn.focus()
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
@@ -305,7 +301,6 @@ var gameConsole = {
         var listener = document.addEventListener("keypress", e => {
             document.getElementById("consoleOut").innerText = "What now?"
             consoleIn.style.display = "inline-block"
-            consoleIn.focus()
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
@@ -595,7 +590,6 @@ var map = {
                         document.getElementById("consoleOut").innerText = "What now?"
                         document.getElementById("consoleIn").disabled = false
                         document.getElementById("consoleIn").style.display = "inline-block"
-                        document.getElementById("consoleIn").focus()
                         map.carry = "25"
                         gameConsole.display()
                     }, 2000)
@@ -641,7 +635,6 @@ var map = {
                     document.getElementById("consoleOut").innerText = "What now?"
                     document.getElementById("consoleIn").disabled = false
                     document.getElementById("consoleIn").style.display = "inline-block"
-                    document.getElementById("consoleIn").focus()
                 }, 2000)
             }, 2000)
         },
@@ -694,26 +687,37 @@ var map = {
 }
 
 function initInputCaseSwitching() {
-    document.addEventListener("keydown", e => {
-        if (e.which == 16) {
-            gameConsole.caps = !gameConsole.caps
+
+    document.addEventListener("keyup", e => { //enter, release shift
+        if (e.code === "Enter") {
+            gameConsole.inputInterpreter()
         }
-        if (e.which == 20) {
-            gameConsole.caps = !gameConsole.caps
-        }
-    })
-    document.addEventListener("keyup", e => {
-        if (e.which == 16) {
+        if (e.code == "ShiftLeft") {
             gameConsole.caps = !gameConsole.caps
         }
     })
-    document.getElementById("consoleIn").addEventListener("input", function () {
-        if (this.value.length > 0) {
-            let string = this.value
-            let array = string.split("")
-            array[array.length - 1] = (gameConsole.caps ? (array[array.length - 1]).toUpperCase() : (array[array.length - 1]).toLowerCase())
-            string = array.join("")
-            this.value = string
+
+    document.addEventListener("keydown", e => { // typing, space, shift, capslock
+        var consoleIn = document.getElementById("consoleIn")
+        console.log(e.code);
+        var key = e.code.slice(-1)
+        const chars = "QWERTYUIOPASDFGHJKLZXCVBNM"
+        if (chars.includes(key)) {
+            document.getElementById("consoleIn").value += (gameConsole.caps ? key.toUpperCase() : key.toLowerCase())
+        }
+        if (e.code == "Space") {
+            document.getElementById("consoleIn").value += " "
+        }
+        if (e.code == "Backspace") {
+            if (consoleIn.value.length > 0) {
+                consoleIn.value = consoleIn.value.substring(0, consoleIn.value.length - 1)
+            }
+        }
+        if (e.code == "ShiftLeft") {
+            gameConsole.caps = !gameConsole.caps
+        }
+        if (e.code == "CapsLock") {
+            gameConsole.caps = !gameConsole.caps
         }
     })
 }
@@ -801,14 +805,8 @@ function loadPage() {
     var input = document.createElement("input")
     input.type = "text"
     input.id = "consoleIn"
-    input.onblur = () => input.focus()
+    input.onfocus = () => input.blur()
     gameConsoleA.appendChild(input)
-    input.focus()
-    input.addEventListener("keyup", function () {
-        if (event.keyCode === 13) {
-            gameConsole.inputInterpreter()
-        }
-    })
 
     //#region compass display
     gameConsole.compass.coverN = document.createElement("div")

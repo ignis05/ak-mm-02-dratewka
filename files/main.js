@@ -597,10 +597,20 @@ function consoleKeyDown() {
     var key = event.code.slice(-1)
     const chars = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
     if (chars.includes(key)) {
-        document.getElementById("consoleIn").value += (gameConsole.caps ? key.toUpperCase() : key.toLowerCase())
+        if (consoleIn.value.length < 30) {
+            consoleIn.value += (gameConsole.caps ? key.toUpperCase() : key.toLowerCase())
+        }
+        else {
+            consoleIn.value = consoleIn.value.slice(0, -1) + (gameConsole.caps ? key.toUpperCase() : key.toLowerCase())
+        }
     }
     if (event.code == "Space") {
-        document.getElementById("consoleIn").value += " "
+        if (consoleIn.value.length < 30) {
+            consoleIn.value += " "
+        }
+        else {
+            consoleIn.value = consoleIn.value.slice(0, -1) + " "
+        }
     }
     if (event.code == "Backspace") {
         if (consoleIn.value.length > 0) {
@@ -707,6 +717,7 @@ function loadPage() {
     var input = document.createElement("input")
     input.type = "text"
     input.id = "consoleIn"
+    input.size = 30
     input.onfocus = () => input.blur()
     gameConsoleA.appendChild(input)
 

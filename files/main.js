@@ -79,10 +79,13 @@ var gameConsole = {
             document.removeEventListener("keyup", consoleKeyUp)
             document.removeEventListener("keydown", consoleKeyDown)
             document.getElementById("consoleOut").innerText = "You can't go that way..."
+            document.getElementById("inpChar").style.display = "none"
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "The dragon sleeps in a cave!"
                 setTimeout(() => {
                     document.getElementById("consoleOut").innerText = "What now?"
+                    document.getElementById("inpChar").style.display = "block"
+                    inputCharUpdate()
                     document.addEventListener("keyup", consoleKeyUp)
                     document.addEventListener("keydown", consoleKeyDown)
                 }, 2000)
@@ -109,8 +112,11 @@ var gameConsole = {
                     break;
             }
             document.getElementById("consoleOut").innerText = `You are going ${fulldirection}`
+            document.getElementById("inpChar").style.display = "none"
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "What now?"
+                document.getElementById("inpChar").style.display = "block"
+                inputCharUpdate()
                 document.addEventListener("keyup", consoleKeyUp)
                 document.addEventListener("keydown", consoleKeyDown)
                 this.display()
@@ -254,8 +260,11 @@ var gameConsole = {
         document.removeEventListener("keyup", consoleKeyUp)
         document.removeEventListener("keydown", consoleKeyDown)
         document.getElementById("consoleOut").innerText = msg
+        document.getElementById("inpChar").style.display = "none"
         setTimeout(() => {
             document.getElementById("consoleOut").innerText = "What now?"
+            document.getElementById("inpChar").style.display = "block"
+            inputCharUpdate()
             document.addEventListener("keyup", consoleKeyUp)
             document.addEventListener("keydown", consoleKeyDown)
         }, 2000)
@@ -274,10 +283,13 @@ var gameConsole = {
         document.removeEventListener("keydown", consoleKeyDown)
         consoleIn.style.display = "none"
         document.getElementById("consoleOut").innerText = "Press any key"
+        document.getElementById("inpChar").style.display = "none"
 
         var listener = document.addEventListener("keypress", e => {
             document.getElementById("consoleOut").innerText = "What now?"
             consoleIn.style.display = "inline-block"
+            document.getElementById("inpChar").style.display = "block"
+            inputCharUpdate()
             document.removeEventListener("keypress", listener)
             gameConsole.display()
             setTimeout(() => {
@@ -302,9 +314,12 @@ var gameConsole = {
         document.removeEventListener("keydown", consoleKeyDown)
         consoleIn.style.display = "none"
         document.getElementById("consoleOut").innerText = "Press any key"
+        document.getElementById("inpChar").style.display = "none"
 
         var listener = document.addEventListener("keypress", e => {
             document.getElementById("consoleOut").innerText = "What now?"
+            document.getElementById("inpChar").style.display = "block"
+            inputCharUpdate()
             consoleIn.style.display = "inline-block"
             document.removeEventListener("keypress", listener)
             gameConsole.display()
@@ -478,12 +493,15 @@ var map = {
             document.removeEventListener("keyup", consoleKeyUp)
             document.removeEventListener("keydown", consoleKeyDown)
             document.getElementById("consoleOut").innerText = "You are digging..."
+            document.getElementById("inpChar").style.display = "none"
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "and digging..."
                 setTimeout(() => {
                     document.getElementById("consoleOut").innerText = "That's enough sulphur for you"
                     setTimeout(() => {
                         document.getElementById("consoleOut").innerText = "What now?"
+                        document.getElementById("inpChar").style.display = "block"
+                        inputCharUpdate()
                         document.addEventListener("keyup", consoleKeyUp)
                         document.addEventListener("keydown", consoleKeyDown)
                         map.carry = "25"
@@ -520,6 +538,7 @@ var map = {
             document.removeEventListener("keyup", consoleKeyUp)
             document.removeEventListener("keydown", consoleKeyDown)
             document.getElementById("consoleOut").innerText = "The dragon noticed your gift..."
+            document.getElementById("inpChar").style.display = "none"
             setTimeout(() => {
                 document.getElementById("consoleOut").innerText = "The dragon ate your sheep and died!"
                 map.dragonDead = true;
@@ -528,6 +547,8 @@ var map = {
                 gameConsole.display()
                 setTimeout(() => {
                     document.getElementById("consoleOut").innerText = "What now?"
+                    document.getElementById("inpChar").style.display = "block"
+                    inputCharUpdate()
                     document.addEventListener("keyup", consoleKeyUp)
                     document.addEventListener("keydown", consoleKeyDown)
                 }, 2000)
@@ -626,10 +647,8 @@ function consoleKeyDown(event) {
         gameConsole.caps = !gameConsole.caps
     }
     if (event.code == "CapsLock") {
-        console.log("here");
         gameConsole.caps = !gameConsole.caps
     }
-    console.log(gameConsole.caps);
     inputCharUpdate()
 }
 

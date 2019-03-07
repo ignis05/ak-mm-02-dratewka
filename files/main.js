@@ -615,8 +615,10 @@ function consoleKeyUp(event) {
 
 function inputCharUpdate() {
     inpChar = document.getElementById("inpChar")
-    var dl = document.getElementById("consoleIn").value.length
-    inpChar.style.left = (165 + (dl * 14)) + "px"
+    if (inpChar) { //prevents errors if inpChar was deleted on end
+        var dl = document.getElementById("consoleIn").value.length
+        inpChar.style.left = (165 + (dl * 14)) + "px"
+    }
 }
 
 function consoleKeyDown(event) {

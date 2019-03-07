@@ -582,7 +582,7 @@ var map = {
 }
 
 
-function consoleKeyUp() {
+function consoleKeyUp(event) {
     if (event.code === "Enter") {
         gameConsole.inputInterpreter()
     }
@@ -597,7 +597,7 @@ function inputCharUpdate() {
     inpChar.style.left = (165 + (dl * 14)) + "px"
 }
 
-function consoleKeyDown() {
+function consoleKeyDown(event) {
     var consoleIn = document.getElementById("consoleIn")
     var key = event.code.slice(-1)
     const chars = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
@@ -626,8 +626,10 @@ function consoleKeyDown() {
         gameConsole.caps = !gameConsole.caps
     }
     if (event.code == "CapsLock") {
+        console.log("here");
         gameConsole.caps = !gameConsole.caps
     }
+    console.log(gameConsole.caps);
     inputCharUpdate()
 }
 
@@ -653,10 +655,7 @@ function start() {
     audioDIV.innerHTML = `<audio controls id='audio'><source src="./files/hejnal.mp3" type="audio/mpeg"></audio>`
 
 
-    document.getElementById("audio").play().catch(err => {
-        window.alert("Autoplay of sound was prevented by browser\nYou can play sound with manual control")
-        audioDIV.id = ""
-    })
+    document.getElementById("audio").play()
 
     document.getElementById("audio").addEventListener("ended", next)
     document.addEventListener("keypress", next)

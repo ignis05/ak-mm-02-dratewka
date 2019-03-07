@@ -606,6 +606,7 @@ var map = {
 function consoleKeyUp(event) {
     if (event.code === "Enter") {
         gameConsole.inputInterpreter()
+        inputCharUpdate()
     }
     if (event.code == "ShiftLeft") {
         gameConsole.caps = !gameConsole.caps

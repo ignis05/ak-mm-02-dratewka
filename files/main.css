@@ -47,9 +47,9 @@ body {
     background: black;
     width: auto;
     border: 0px;
-    color: transparent;
-    text-shadow: 0 0 0 grey;
+    color: grey;
     font-size: 14px;
+    height: 20px;
 }
 
 #consoleIn:focus {
@@ -99,12 +99,12 @@ body {
     z-index: 100;
     position: absolute;
     margin: auto;
-    left: 0; 
+    left: 0;
     right: 0;
     top: 0;
 }
 
-#audioDIV{
+#audioDIV {
     display: none;
 }
 
@@ -112,7 +112,18 @@ body {
     z-index: 100;
     position: absolute;
     margin: auto;
-    left: 0; 
+    left: 0;
     right: 0;
     top: 0;
+}
+
+#inpChar {
+    width: 20px;
+    height: 20px;
+    background: grey;
+    z-index: 1000;
+    overflow: hidden;
+    position: absolute;
+    bottom: 11px;
+    left: 165px;
 }

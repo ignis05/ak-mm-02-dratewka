@@ -591,9 +591,14 @@ function consoleKeyUp() {
     }
 }
 
+function inputCharUpdate() {
+    inpChar = document.getElementById("inpChar")
+    var dl = document.getElementById("consoleIn").value.length
+    inpChar.style.left = (165 + (dl * 14)) + "px"
+}
+
 function consoleKeyDown() {
     var consoleIn = document.getElementById("consoleIn")
-    console.log(event.code);
     var key = event.code.slice(-1)
     const chars = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890"
     if (chars.includes(key)) {
@@ -623,6 +628,7 @@ function consoleKeyDown() {
     if (event.code == "CapsLock") {
         gameConsole.caps = !gameConsole.caps
     }
+    inputCharUpdate()
 }
 
 function initInputCaseSwitching() {
@@ -756,5 +762,9 @@ function loadPage() {
     gameConsole.display()
 
     initInputCaseSwitching()
+
+    var inpChar = document.createElement("div")
+    inpChar.id = "inpChar"
+    root.appendChild(inpChar)
 }
 document.addEventListener("DOMContentLoaded", start)
